@@ -1,0 +1,42 @@
+一。引入jQuery
+
+在当前项目的目录下（就是package.json），运行命令 cnpm install jquery --save-dev  这样就将jquery安装到了这个项目中。
+
+然后修改webpack.base.conf.js(在build文件下)两个地方：
+
+1：加入 var webpack=require('webpack');
+2 在module.exports的里面加入
+
+代码
+plugins: [
+    new webpack.optimize.CommonsChunkPlugin('common.js'),
+    new webpack.ProvidePlugin({
+         jQuery: "jquery",
+         $: "jquery"
+    })
+]
+
+ 最后在main.js中加入import $ form 'jquery',完成jquery的引入
+
+二、引入 bootstrap.css文件：
+
+修改webpack.base.conf.js
+
+resolve: {
+　　extensions: ['.js', '.vue', '.json'],
+　　alias: {
+　　'vue$': 'vue/dist/vue.esm.js',
+　　'@': resolve('src'),
+　　'bootstrap':resolve('src/assets/bootstrap'),
+　　}
+},
+
+在main.js中import引入
+
+import 'bootstrap/js/bootstrap.min.js'
+import 'bootstrap/css/bootstrap.min.css'
+三、引入bootstrap.min.js文件：
+
+在main.js中import引入
+
+import 'bootstrap/js/bootstrap.min.js'
